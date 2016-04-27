@@ -1,20 +1,22 @@
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 //check if links are broken
-public class TestBrokenLinks {
+class TestBrokenLinks {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         //store pages
-        HashSet<URL> setPages = new HashSet<URL>();
+        HashSet<URL> setPages;
+
+        //file name for all links
+        String fileAll = "all-";
+        //file name for bad links
+        String fileBad = "bad-";
 
         //store pages & links
-        HashMap<URL, String> setLinks = new HashMap<URL, String>();
+        HashMap<URL, ArrayList<String>> mapLinks;
         String fileName = "";
 
         //read file name
@@ -34,14 +36,14 @@ public class TestBrokenLinks {
 
         //create set of links
         ReadLinks rl = new ReadLinks();
-        setLinks = rl.readLinks(setPages);
-        for (Map.Entry<URL, String> entry : setLinks.entrySet()) {
-            URL page = entry.getKey();
-            String link = entry.getValue();
-        }
+        mapLinks = rl.readLinks(setPages);
 
         //write data to file
         WriteData wd = new WriteData();
-        wd.dataWriter(setLinks);
+        wd.dataWriter(mapLinks, fileName.replaceFirst("[.][^.]+$", "") + "-" + fileAll);
+
+        //verify links
+        CheckLinks chLinks = new CheckLinks();
+        wd.dataWriter(chLinks.checkLinks(mapLinks), fileName.replaceFirst("[.][^.]+$", "") + "-" + fileBad);
     }
 }

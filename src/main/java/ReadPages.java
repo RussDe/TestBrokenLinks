@@ -2,18 +2,17 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashSet;
-import java.util.Set;
 
 //read links from file
-public class ReadPages {
+class ReadPages {
     //filename
-    String file;
+    private final String file;
 
     public ReadPages(String file) {
         this.file = file;
     }
 
-    public HashSet<URL> readPages() throws FileNotFoundException, IOException {
+    public HashSet<URL> readPages() throws IOException {
         System.out.print("\nCreating set of pages ... ");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
