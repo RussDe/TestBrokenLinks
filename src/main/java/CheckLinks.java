@@ -8,20 +8,16 @@ import java.util.Map;
 
 //check links if they are valid
 class CheckLinks {
-    public HashMap<URL, ArrayList<String>> checkLinks(HashMap<URL, ArrayList<String>> mapLinks) {
+    public ArrayList<String> checkLinks(ArrayList<String> arrLinks) {
+        ArrayList<String> newArray = new ArrayList<String>();
         System.out.print("Checking links ...");
-        HashMap<URL, ArrayList<String>> badLinks = new HashMap<URL, ArrayList<String>>();
-        ArrayList<String> arrayBadLinks = new ArrayList<String>();
-        for (Map.Entry<URL, ArrayList<String>> entry : mapLinks.entrySet()) {
-            for (String link : entry.getValue()) {
-                if (verifyLink(link).equals("BAD")) {
-                    arrayBadLinks.add(link);
-                }
+        for (String link : arrLinks) {
+            if (verifyLink(link).equals("BAD")) {
+                newArray.add(link);
             }
-            badLinks.put(entry.getKey(), arrayBadLinks);
         }
         System.out.println(FontColor.ANSI_GREEN + "Done!" + FontColor.ANSI_RESET);
-        return badLinks;
+        return newArray;
     }
 
     private static String verifyLink(String link) {

@@ -14,22 +14,16 @@ class ReadLinks {
     private final WebDriver DRIVER = new HtmlUnitDriver();
 
 
-    public HashMap<URL, ArrayList<String>> readLinks(HashSet<URL> urlPages) {
+    public ArrayList<String> readLinks(String page) {
         System.out.print("Links reading ... ");
-        ArrayList<String> array;
-
-        HashMap<URL, ArrayList<String>> mapLinks = new HashMap();
-        for (URL item : urlPages) {
-            DRIVER.get(item.toString());
-            array = new ArrayList<String>();
-            List<WebElement> links = DRIVER.findElements(By.cssSelector("a"));
-            for (WebElement element : links) {
-                array.add(element.getAttribute("href"));
-            }
-            mapLinks.put(item, array);
+        ArrayList<String> array = new ArrayList<String>();;
+        DRIVER.get(page);
+        List<WebElement> links = DRIVER.findElements(By.cssSelector("a"));
+        for (WebElement element : links) {
+            array.add(element.getAttribute("href"));
         }
-        DRIVER.close();
-        System.out.println(FontColor.ANSI_GREEN + "Done!" + FontColor.ANSI_RESET);
-        return mapLinks;
-    }
+    DRIVER.close();
+    System.out.println(FontColor.ANSI_GREEN+"Done!"+FontColor.ANSI_RESET);
+    return array;
+}
 }
