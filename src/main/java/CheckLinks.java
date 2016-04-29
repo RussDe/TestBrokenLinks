@@ -23,20 +23,16 @@ class CheckLinks {
         try {
             URL urlLink = new URL(link);
             HttpURLConnection httpConnect = (HttpURLConnection) urlLink.openConnection();
-            httpConnect.setConnectTimeout(3000);
+            httpConnect.setConnectTimeout(100);
             httpConnect.connect();
+            //System.out.println(httpConnect.getResponseCode());
             if (httpConnect.getResponseCode() == 200) {
                 result = "OK";
             } else result = "BAD";
             httpConnect.disconnect();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
-
     }
-
 }

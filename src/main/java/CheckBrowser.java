@@ -4,7 +4,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 //check for a browser
-public class CheckBrowser {
+class CheckBrowser {
+
     public WebDriver checkBrowser(String firstParam) {
         switch (firstParam) {
             case "firefox":
@@ -12,9 +13,8 @@ public class CheckBrowser {
             case "safari":
                 return new SafariDriver();
             case "chrome":
+                System.setProperty("webdriver.chrome.driver", "/Users/rustem/Projects/IdeaProjects/MarkBrokenLinks/chromedriver");
                 return new ChromeDriver();
-//            case "explorer":
-//                return ;
             default:
                 return new FirefoxDriver();
         }

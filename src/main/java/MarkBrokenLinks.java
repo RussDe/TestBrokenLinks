@@ -12,7 +12,7 @@ import java.util.*;
 //check if links are broken
 class MarkBrokenLinks {
     static String BROWSER_DRIVER = null;
-    final static String SAFARI_DRIVER = "SafariDriver";
+    private final static String SAFARI_DRIVER = "SafariDriver";
     final static String FIREFOX_DRIVER = "FirefoxDriver";
     final static String CHROME_DRIVER = "ChromeDriver";
     final static String INTERNET_DRIVER = "InternetExplorerDriver";
@@ -20,12 +20,13 @@ class MarkBrokenLinks {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+
         //file name for all links
         String fileAll = "all-";
         //file name for bad links
         String fileBad = "bad-";
-        //example od bad links file name
-        String badLinks = "/Users/rustem/Projects/IdeaProjects/MarkBrokenLinks/bad.txt";
+        //example of bad links file name
+        //String badLinks = "/Users/rustem/Projects/IdeaProjects/MarkBrokenLinks/bad.txt";
         //store pages & links
         ArrayList<String> arrLinks;
         String fileName = "";
@@ -109,11 +110,13 @@ class MarkBrokenLinks {
 
         //verify links and write result
         CheckLinks chLinks = new CheckLinks();
-        //String badLinksName = wd.dataWriter(chLinks.checkLinks(arrLinks), fileName.replaceFirst("[.][^.]+$", "") + "-" + fileBad);
+        String badLinksName = wd.dataWriter(chLinks.checkLinks(arrLinks), fileName.replaceFirst("[.][^.]+$", "") + "-" + fileBad);
 
+        int countBadLinks = chLinks.checkLinks(arrLinks).size();
+        int countAllLinks = arrLinks.size();
         if(driver!=null) {
             JS js = new JS();
-            js.jsAction(pageCreated, badLinks, driver);
+            js.jsAction(pageCreated, badLinksName, driver, countAllLinks, countBadLinks);
         }
     }
 }

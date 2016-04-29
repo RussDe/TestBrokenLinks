@@ -1,7 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.io.*;
 import java.util.List;
@@ -11,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 class JS {
     WebDriver driver;
 
-    void jsAction(String page, String fileName, WebDriver driver) throws IOException {
+    void jsAction(String page, String fileName, WebDriver driver, int allLinks, int badLinks) throws IOException {
         driver.get(page);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         File file = new File(fileName);
         FileReader fw = new FileReader(file);
@@ -31,5 +28,10 @@ class JS {
                 }
             }
         }
+        js.executeScript("function showAlert() {" +
+                "alert('Total links: " + allLinks + " " +
+                " Bad links: " + badLinks + "'); " +
+                "};" +
+                " showAlert()");
     }
 }
