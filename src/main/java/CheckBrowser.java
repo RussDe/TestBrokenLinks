@@ -1,17 +1,22 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
 //check for a browser
 public class CheckBrowser {
-    public String checkBrowser(String firstParam) {
+    public WebDriver checkBrowser(String firstParam) {
         switch (firstParam) {
-            case "-firefox":
-                return MarkBrokenLinks.FIREFOX_DRIVER;
-            case "-safari":
-                return MarkBrokenLinks.SAFARI_DRIVER;
-            case "-chrome":
-                return MarkBrokenLinks.CHROME_DRIVER;
-            case "-explorer":
-                return MarkBrokenLinks.INTERNET_DRIVER;
+            case "firefox":
+                return new FirefoxDriver();
+            case "safari":
+                return new SafariDriver();
+            case "chrome":
+                return new ChromeDriver();
+//            case "explorer":
+//                return ;
             default:
-                return MarkBrokenLinks.DEFAULT_DRIVER;
+                return new FirefoxDriver();
         }
     }
 }

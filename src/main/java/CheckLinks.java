@@ -3,13 +3,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 //check links if they are valid
 class CheckLinks {
     public ArrayList<String> checkLinks(ArrayList<String> arrLinks) {
-        ArrayList<String> newArray = new ArrayList<String>();
+        ArrayList<String> newArray = new ArrayList<>();
         System.out.print("Checking links ...");
         for (String link : arrLinks) {
             if (verifyLink(link).equals("BAD")) {
