@@ -1,12 +1,6 @@
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 //check if links are broken
@@ -106,7 +100,7 @@ class MarkBrokenLinks {
 
         //write data to file
         WriteData wd = new WriteData();
-        String allLinksName = wd.dataWriter(arrLinks, fileName.replaceFirst("^(http://www\\.|http://|www\\.)","") + "-" + fileAll);
+        String allLinksName = wd.dataWriter(arrLinks, fileName.replaceFirst("^(http://www\\.|http://|www\\.)", "") + "-" + fileAll);
 
         //verify links and write result
         CheckLinks chLinks = new CheckLinks();
@@ -114,7 +108,7 @@ class MarkBrokenLinks {
 
         int countBadLinks = chLinks.checkLinks(arrLinks).size();
         int countAllLinks = arrLinks.size();
-        if(driver!=null) {
+        if (driver != null) {
             JS js = new JS();
             js.jsAction(pageCreated, badLinksName, driver, countAllLinks, countBadLinks);
         }
