@@ -2,7 +2,6 @@ import org.openqa.selenium.*;
 
 import java.io.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 //playing with JS
 class JS {

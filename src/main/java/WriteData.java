@@ -14,8 +14,7 @@ class WriteData {
         Date date = new Date(System.currentTimeMillis());
         DateFormat df = new SimpleDateFormat("MMddyy_HHmmss");
         System.out.printf("File <%s> writing ... ", fileName);
-        //String result = "/Users/rustem/Projects/IdeaProjects/MarkBrokenLinks/result_" + df.format(date) + ".txt";
-        String result = fileName + df.format(date) + ".txt";
+         String result = fileName + df.format(date) + ".txt";
         File file = new File(result);
         FileWriter fw = new FileWriter(file, true);
         for (String item : arrWhole) {

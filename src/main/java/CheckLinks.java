@@ -25,9 +25,9 @@ class CheckLinks {
             HttpURLConnection httpConnect = (HttpURLConnection) urlLink.openConnection();
             httpConnect.setConnectTimeout(100);
             httpConnect.connect();
-            if (httpConnect.getResponseCode() == 404) {
-                result = "BAD";
-            } else result = "OK";
+            if (httpConnect.getResponseCode() != 404)
+                result = "OK";
+            else result = "BAD";
             httpConnect.disconnect();
         } catch (IOException e) {
             e.printStackTrace();

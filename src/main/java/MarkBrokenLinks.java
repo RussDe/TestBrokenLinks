@@ -105,7 +105,6 @@ class MarkBrokenLinks {
         //verify links and write result
         CheckLinks chLinks = new CheckLinks();
         String badLinksName = wd.dataWriter(chLinks.checkLinks(arrLinks), fileName.replaceFirst("[.][^.]+$", "") + "-" + fileBad);
-
         int countBadLinks = chLinks.checkLinks(arrLinks).size();
         int countAllLinks = arrLinks.size();
         if (driver != null) {
